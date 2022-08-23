@@ -6,7 +6,10 @@ import kata.academy.eurekaprofileservice.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
 
@@ -23,8 +26,8 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public void deleteProfile(Long id) {
-        profileRepository.deleteById(id);
+    public void deleteProfile(Long profileId) {
+        profileRepository.deleteById(profileId);
     }
 
 }

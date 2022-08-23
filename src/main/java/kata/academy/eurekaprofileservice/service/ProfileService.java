@@ -6,6 +6,6 @@ public interface ProfileService {
 
     Profile addProfile(Profile profile);
     Profile updateProfile(Profile profile);
-    void deleteProfile(Long id);
+    void deleteProfile(Long profileId);
 
 }

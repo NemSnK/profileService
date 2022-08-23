@@ -10,11 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@Table(name = "profiles")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,17 +32,13 @@ public class Profile {
     @Column(unique = true, nullable = false)
     private Long userId;
 
-    @Column
     private String firstName;
 
-    @Column
     private String lastName;
 
-    @Column
     private LocalDate birthdate;
 
-    @Column
-    Gender gender;
+    private Gender gender;
 
     @Override
     public boolean equals(Object o) {
