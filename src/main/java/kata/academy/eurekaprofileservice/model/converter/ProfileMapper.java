@@ -6,7 +6,8 @@ import kata.academy.eurekaprofileservice.model.entity.Profile;
 
 public final class ProfileMapper {
 
-    private ProfileMapper(){}
+    private ProfileMapper() {
+    }
 
     public static Profile toEntity(ProfilePersistRequestDto dto) {
         Profile profile = new Profile();
@@ -25,5 +26,4 @@ public final class ProfileMapper {
         profile.setGender(dto.gender());
         return profile;
     }
-
 }
