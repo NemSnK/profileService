@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -39,4 +40,19 @@ public class Profile {
 
     @Column
     Gender gender;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profile profile = (Profile) o;
+        return Objects.equals(id, profile.id) && Objects.equals(userId, profile.userId) &&
+                Objects.equals(firstName, profile.firstName) && Objects.equals(lastName, profile.lastName) &&
+                Objects.equals(birthdate, profile.birthdate) && gender == profile.gender;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userId, firstName, lastName, birthdate, gender);
+    }
 }
