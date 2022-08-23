@@ -30,4 +30,9 @@ public class ProfileServiceImpl implements ProfileService {
         profileRepository.deleteById(profileId);
     }
 
+    @Override
+    public boolean existsByIdAndUserId(Long profileId, Long userId){
+        return profileRepository.existsByIdAndUserId(profileId, userId);
+    }
+
 }

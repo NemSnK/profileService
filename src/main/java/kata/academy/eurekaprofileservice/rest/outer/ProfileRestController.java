@@ -38,17 +38,23 @@ public class ProfileRestController {
     @PutMapping("/{profileId}")
     public Response<Profile> updateProfile(@RequestBody ProfileUpdateRequestDto dto, @RequestParam @Positive Long userId,
                                     @PathVariable @Positive Long profileId) {
-        Profile profile = ProfileMapper.toEntity(dto);
-        profile.setId(profileId);
-        profile.setUserId(userId);
-        profileService.addProfile(profile);
-        return Response.ok(profile);
+        if (profileService.existsByIdAndUserId(profileId, userId)) {
+            Profile profile = ProfileMapper.toEntity(dto);
+            profile.setId(profileId);
+            profile.setUserId(userId);
+            profileService.addProfile(profile);
+            return Response.ok(profile);
+        }
+        else return Response.error("Ошибка обновления: Профиля с данным ID не существует");
     }
 
     @DeleteMapping("/{profileId}")
     public Response<Void> deleteProfile(@PathVariable @Positive Long profileId, @RequestParam @Positive Long userId) {
-        profileService.deleteProfile(profileId);
-        return Response.ok();
+        if (profileService.existsByIdAndUserId(profileId, userId)) {
+            profileService.deleteProfile(profileId);
+            return Response.ok();
+        }
+        else return Response.error("Ошибка удаления: Профиля с данным ID не существует");
     }
 
 }
