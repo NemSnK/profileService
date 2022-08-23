@@ -5,23 +5,25 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity
-@Table(name = "profiles")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "profiles")
 public class Profile {
 
     @Id
@@ -38,6 +40,7 @@ public class Profile {
 
     private LocalDate birthdate;
 
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Override
@@ -45,9 +48,7 @@ public class Profile {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Profile profile = (Profile) o;
-        return Objects.equals(id, profile.id) && Objects.equals(userId, profile.userId) &&
-                Objects.equals(firstName, profile.firstName) && Objects.equals(lastName, profile.lastName) &&
-                Objects.equals(birthdate, profile.birthdate) && gender == profile.gender;
+        return Objects.equals(id, profile.id) && Objects.equals(userId, profile.userId) && Objects.equals(firstName, profile.firstName) && Objects.equals(lastName, profile.lastName) && Objects.equals(birthdate, profile.birthdate) && gender == profile.gender;
     }
 
     @Override
