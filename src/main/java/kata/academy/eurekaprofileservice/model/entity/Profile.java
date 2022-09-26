@@ -40,6 +40,8 @@ public class Profile {
 
     private LocalDate birthdate;
 
+    private String avatarPicUrl;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
